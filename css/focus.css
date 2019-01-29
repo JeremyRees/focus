@@ -1,0 +1,55 @@
+body, html {
+  height: 100%;
+  background-color: #afafaf;
+}
+#blocked {
+  text-align: center;
+}
+.toggle-button span#inactive-text {
+  display: none;
+}
+.toggle-button.inactive span#inactive-text {
+  display: inline;
+}
+.toggle-button span#active-text {
+  display: inline;
+}
+.toggle-button.inactive span#active-text {
+  display: none;
+}
+.navbar {
+  background-color: #fff;
+  box-shadow: 0px 0px 3px 3px #888;
+}
+.container {
+  min-height: 100%;
+  padding: 0px 40px;
+  background-color: #fff;
+  box-shadow: -2px 2px 7px 1px rgba(50, 50, 50, 0.22);
+}
+.container .aside {
+  font-style: italic;
+  font-size: 14px;
+}
+.container #sitesGrid .gridColumn {
+  width: 100%;
+  max-width: 25%;
+  padding: 0px;
+}
+.container #sitesGrid .gridColumn th {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.container #sitesGrid .gridColumn .btn {
+  padding: 0.25rem 0.65rem;
+  margin: 0.3rem;
+}
+.container #sitesGrid .gridColumn .columnTail td {
+  display: flex;
+  align-items: center;
+}
+.container #sitesGrid .gridColumn .columnTail input {
+  border: #afafaf solid 1px;
+  border-radius: 0.25rem;
+  width: 70%;
+}
