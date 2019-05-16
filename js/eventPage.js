@@ -16,10 +16,15 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
     if (details.reason == 'update') {
         alert('Hey there, this is Jeremy, author of focus, that extension you have installed. Sorry to bother you.\n\nI pushed an update to the extension last night which Chrome likely already upgraded to for you. Unfortunately, due to a careless mistake on my part, upgrading caused your custom lists of distracting websites to be reset to the defaults.\n\nI\'m really sorry, but know that the code has been amended to prevent this from happening in the future, so if you customize your settings again they\'ll be there to stay. My apologies.');
+        setBackgroundPageVariables();
     }
 });
 
 chrome.runtime.onStartup.addListener(function() {
+    setBackgroundPageVariables();
+});
+
+function setBackgroundPageVariables() {
     chrome.storage.sync.get(['focusBlock', 'focusWarn', 'focusTime', 'focusStatus'], function(data) {
         blockPages = data.focusBlock;
         warnPages = data.focusWarn;
@@ -27,7 +32,8 @@ chrome.runtime.onStartup.addListener(function() {
         focusing = data.focusStatus;
     });
     confirmedThisSession = [];
-});
+}
+
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == "complete") {
