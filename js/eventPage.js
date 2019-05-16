@@ -13,16 +13,6 @@ chrome.runtime.onInstalled.addListener(function(details) {
     });
 });
 
-// chrome.runtime.onSuspend.addListener(function() {
-//         chrome.storage.sync.set({
-//         'focusBlock': blockPages,
-//         'focusWarn': warnPages,
-//         'focusTime': timePages,
-//         'focusStatus': focusing
-//     });
-//     confirmedThisSession = [];
-// });
-
 chrome.runtime.onStartup.addListener(function() {
     chrome.storage.sync.get(['focusBlock', 'focusWarn', 'focusTime', 'focusStatus'], function(data) {
         blockPages = data.focusBlock;
