@@ -35,14 +35,14 @@ function setBackgroundPageVariables() {
 
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status == "complete") {
+    if (changeInfo.status == "complete" && focusing) {
         blockPages.forEach(function(i) {
-            if (tab.url.toLowerCase().includes(i.toLowerCase()) && focusing) {
+            if (tab.url.toLowerCase().includes(i.toLowerCase())) {
                 chrome.tabs.update(tabId, {url: '../html/blocked.html'});
             }
         });
         warnPages.forEach(function(i) {
-            if (tab.url.toLowerCase().includes(i.toLowerCase()) && focusing && !tab.url.includes('chrome-extension')) {
+            if (tab.url.toLowerCase().includes(i.toLowerCase()) && !tab.url.includes('chrome-extension')) {
                 var confirmed = false;
                 confirmedThisSession.forEach(function(j) {
                     if (j.listEntry == i) {
@@ -56,11 +56,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
             }
         });
         timePages.forEach(function(i) {
-            if (tab.url.toLowerCase().includes(i.toLowerCase()) && focusing) {
+            if (tab.url.toLowerCase().includes(i.toLowerCase())) {
                 setTimeout(function() {
                     chrome.tabs.get(tabId, function(currentTab) {
                         // Check that the user hasn't left the page or disabled focus mode
-                        if (currentTab.url.toLowerCase().includes(i.toLowerCase()) && focusing) {
+                        if (focusing && currentTab.url.toLowerCase().includes(i.toLowerCase())) {
                             chrome.tabs.update(tabId, {url: '../html/timeout.html'});
                         }
                     });
