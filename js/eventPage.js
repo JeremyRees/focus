@@ -147,14 +147,10 @@ function toggleFocusMode() {
     chrome.storage.sync.set({'focusStatus':focusing});
     if (focusing) {
         chrome.browserAction.setIcon({path: {
-            '16': '../img/focusInverted16.png',
-            '48': '../img/focusInverted48.png',
             '128': '../img/focusInverted128.png'
         }});
     } else {
         chrome.browserAction.setIcon({path: {
-            '16': '../img/focus16.png',
-            '48': '../img/focus48.png',
             '128': '../img/focus128.png'
         }});
     }
