@@ -48,18 +48,11 @@ function documentReady() {
                     '<div class="row pb-5"><div class="col-6"></div><div class="col-3 text-center">&mdash;'+quote[1]+'</div></div>';
     $('.toggle-button').parent().after(quoteHtml);
 
-    var siteListHtml = '';
-    blockPages.forEach(function(i) {
-        siteListHtml = '<tr><td>'+i+'<button class="remove-button btn btn-danger ml-3" site="'+i+'" level="block">X</button></td></tr>';
-        $('#column-block').find('.columnTail').before(siteListHtml);
-    });
-    warnPages.forEach(function(i) {
-        siteListHtml = '<tr><td>'+i+'<button class="remove-button btn btn-danger ml-3" site="'+i+'" level="warn">X</button></td></tr>';
-        $('#column-warn').find('.columnTail').before(siteListHtml);
-    });
-    timePages.forEach(function(i) {
-        siteListHtml = '<tr><td>'+i+'<button class="remove-button btn btn-danger ml-3" site="'+i+'" level="time">X</button></td></tr>';
-        $('#column-time').find('.columnTail').before(siteListHtml);
+    ['block', 'warn', 'time'].forEach(function(lev) {
+        window[lev+'Pages'].forEach(function(page) {
+            let html = '<tr><td>'+page+'<button class="remove-button btn btn-danger ml-3" site="'+page+'" level="'+lev+'">X</button></td></tr>';
+            $('#column-'+lev).find('.columnTail').before(html);
+        });
     });
 
     var urlQueryParams = getUrlVars();
