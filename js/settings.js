@@ -79,6 +79,14 @@ function documentReady() {
     $('.add-button').click(function() {
         addSiteHelper($(this).attr('level'));
     });
+    ['block', 'warn', 'time'].forEach(function(lev) {
+        $('#'+lev+'Input').on('keypress', function(e) {
+            var code = e.keyCode || e.which;
+            if (code==13) {
+                $(this).parent().find('.add-button').click();
+            }
+        });
+    });
 
     $('#sitesGrid').on('click', '.remove-button', function() {
         var success = removeSite($(this).attr('site'), $(this).attr('level'));
