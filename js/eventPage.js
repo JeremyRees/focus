@@ -38,7 +38,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status == "complete") {
         blockPages.forEach(function(i) {
             if (tab.url.toLowerCase().includes(i.toLowerCase()) && focusing) {
-                chrome.tabs.update(tabId, {url: '../html/settings.html?b=1'});
+                chrome.tabs.update(tabId, {url: '../html/blocked.html'});
             }
         });
         warnPages.forEach(function(i) {

@@ -55,22 +55,6 @@ function documentReady() {
         });
     });
 
-    var urlQueryParams = getUrlVars();
-    if ('b' in urlQueryParams && parseInt(urlQueryParams['b']) == 1) {
-        var blockMessages = [
-            'You know better.',
-            'You made the rules, I\'m just enforcing them.',
-            'Not so fast.',
-            'The cat videos can probably wait, no?',
-            'Just think of all the willpower you\'re building.',
-            'Is your to-do list clear yet?'
-        ];
-        var blockMessage = blockMessages[Math.floor(Math.random()*blockMessages.length)];
-
-        blockHtml = '<div class="row pt-5"><div class="col col-3"></div><div id="blocked" class="col col-6"><h4>'+blockMessage+'</h4></div></div>';
-        $('.toggle-button').parent().before(blockHtml);
-    }
-
     $('.toggle-button').click(function() {
         $(this).toggleClass('inactive');
         toggleFocus();
@@ -103,15 +87,4 @@ function addSiteHelper(level) {
         $('#column-'+level).find('.columnTail').before(siteListHtml);
         $('#'+level+'Input').val('');
     }
-}
-
-function getUrlVars() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
 }
